@@ -1,38 +1,32 @@
-# working-student-app
+# BACKEND
+working-student-ui
 
-# Docker
-### Run project
+## Docker build 
 ```
-docker compose up --build
-```
-
-### Stop project
-```
-docker-compose down
-```
-### Clean Docker
-
-
-#### 1. Stop All Docker Containers
-```
-docker kill $(docker ps -q)
+docker build -t workingstudentapp .
 ```
 
-#### 2. Delete all containers using the following command:
+## Docker push to  hub 
 ```
-docker rm -f $(docker ps -a -q)
-```
-
-#### 3. Delete all containers including its volumes use,
-```
-docker rm -vf $(docker ps -aq)
+docker tag workingstudentapp iquinto/workingstudentapp
 ```
 
-#### 4. Delete all the images,
 ```
-docker rmi -f $(docker images -aq)
+docker push iquinto/workingstudentapp
 ```
-#### 5. Delete all volumes using the following command:
+
+## Docker build 
 ```
-docker volume rm $(docker volume ls -q)
+docker run -it -p 8081:81 --rm --name workingstudent workingstudentui
 ```
+
+
+## Docker stop
+```
+docker stop $(docker ps -a -q)
+docker rm -vf $(docker ps -a -q)
+docker rmi -f $(docker images -a -q) 
+
+```
+
+ 
