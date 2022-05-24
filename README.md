@@ -39,6 +39,14 @@ host: localhost
 port: 5432
 ```
 
+### Prepare Springboot App
+* Download or clone the  repository.
+* Using IntelliJ IDE (or similar) import the working-student-app as Gradle project.
+* The application has 3 profiles:
+- <b>dev</b>. This is the profile for local execution. <br>
+- <b>docker</b>. This is the profile for building  docker image.<br>
+- <b>test</b>.  This is the profile for testing.
+
 ## Docker
 ### Docker build 
 ```
