@@ -54,6 +54,8 @@ Then run:
 ```
 $ ./gradlew bootRun
 ```
+or follow this <b><a href="https://www.jetbrains.com/help/idea/work-with-gradle-tasks.html"> instructions</a></b>.
+
 ### Test Execution
 Run the following command
  
