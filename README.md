@@ -1,5 +1,14 @@
-# BACKEND
-working-student-ui
+# Working Student APP (<i>Backend</i>)
+
+
+## Requirements
+* [JDK 11](https://www.oracle.com/es/java/technologies/javase/jdk11-archive-downloads.html)
+* [Gradle version >= 5.0](https://docs.gradle.org/current/userguide/compatibility.html)
+* [Intellj IDEA](https://www.jetbrains.com/idea/) or similar
+* [Docker/Docker Desktop](https://www.docker.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+
+## Installation
 
 ## Docker build 
 ```
