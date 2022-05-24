@@ -47,12 +47,21 @@ port: 5432
 <b>docker</b>. This is the profile for building  docker image.<br>
 <b>test</b>.  This is the profile for testing.
 
-### Poject Execution
+### Project Execution
 Set active profile to <b>dev</b> in <a href="https://github.com/iquinto/working-student-app/blob/master/src/main/resources/application.properties">application.properties</a>:
 ```spring.profiles.active=dev```
+then run:
 ```
 $ ./gradlew bootRun
 ```
+### Test Execution
+ run the following command
+ 
+```
+$ ./gradlew test 
+```
+or follow this <a href="https://www.jetbrains.com/help/idea/work-with-tests-in-gradle.html"> instructions</a>.
+
 
 ## Docker
 ### Docker build 
