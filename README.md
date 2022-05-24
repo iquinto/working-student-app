@@ -10,12 +10,13 @@
 
 ## Installation
 
-## Docker build 
+## Docker
+### Docker build 
 ```
 docker build -t workingstudentapp .
 ```
 
-## Docker push to  hub 
+### Docker push to  hub 
 ```
 docker tag workingstudentapp iquinto/workingstudentapp
 ```
@@ -24,13 +25,13 @@ docker tag workingstudentapp iquinto/workingstudentapp
 docker push iquinto/workingstudentapp
 ```
 
-## Docker build 
+### Docker run (for testing)
 ```
-docker run -it -p 8081:81 --rm --name workingstudent workingstudentui
+docker run -it -p 8081:81 --rm --name workingstudent workingstudentapp
 ```
 
 
-## Docker stop
+### Docker stop
 ```
 docker stop $(docker ps -a -q)
 docker rm -vf $(docker ps -a -q)
