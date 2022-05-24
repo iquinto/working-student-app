@@ -50,17 +50,22 @@ port: 5432
 ### Project Execution
 Set active profile to <b>dev</b> in <a href="https://github.com/iquinto/working-student-app/blob/master/src/main/resources/application.properties">application.properties</a>:
 ```spring.profiles.active=dev```
-then run:
+Then run:
 ```
 $ ./gradlew bootRun
 ```
 ### Test Execution
- run the following command
+Run the following command
  
 ```
 $ ./gradlew test 
 ```
-or follow this <a href="https://www.jetbrains.com/help/idea/work-with-tests-in-gradle.html"> instructions</a>.
+or 
+```
+$ ./gradlew check 
+```
+
+or follow this <b><a href="https://www.jetbrains.com/help/idea/work-with-tests-in-gradle.html"> instructions</a></b>.
 
 
 ## Docker
