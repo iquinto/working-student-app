@@ -42,10 +42,17 @@ port: 5432
 ### Prepare Springboot App
 * Download or clone the  repository.
 * Using IntelliJ IDE (or similar) import the working-student-app as Gradle project.
-* The application has 3 profiles:
-- <b>dev</b>. This is the profile for local execution. <br>
-- <b>docker</b>. This is the profile for building  docker image.<br>
-- <b>test</b>.  This is the profile for testing.
+* The application has 3 profiles:<br>
+<b>dev</b>. This is the profile for local execution. <br>
+<b>docker</b>. This is the profile for building  docker image.<br>
+<b>test</b>.  This is the profile for testing.
+
+### Poject Execution
+Set active profile to <b>dev</b> in <a href="https://github.com/iquinto/working-student-app/blob/master/src/main/resources/application.properties">application.properties</a>:
+```spring.profiles.active=dev```
+```
+$ ./gradlew bootRun
+```
 
 ## Docker
 ### Docker build 
