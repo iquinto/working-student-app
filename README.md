@@ -9,6 +9,35 @@
 * [PostgreSQL](https://www.postgresql.org/)
 
 ## Installation
+### Prepare Database (Postgres)
+* Download and install <a href="https://www.postgresql.org/download/">PostgresSQL</a>
+* Optionally, download  and install <a href="https://www.pgadmin.org/download/">pgAdmin</a>
+* Create a database named ```workingstudent```
+* Schema and tables are automatically creted <b>on app load</b> by  execution by executing <a href="https://github.com/iquinto/working-student-app/blob/master/src/main/resources/scripts/schema.sql">  this script</a>.
+* Create user and role:
+
+```
+CREATE ROLE workingstudent WITH
+	LOGIN
+	SUPERUSER
+	CREATEDB
+	CREATEROLE
+	INHERIT
+	NOREPLICATION
+	CONNECTION LIMIT -1
+	PASSWORD 'workingstudent';
+GRANT usage on schema public to workingstudent;
+GRANT create on schema public to workingstudent;
+```
+* To sum-up, the author avails the following data for database management:
+
+```
+database: workingstudent
+username: workingstudent
+password: workingstudent
+host: localhost
+port: 5432
+```
 
 ## Docker
 ### Docker build 
