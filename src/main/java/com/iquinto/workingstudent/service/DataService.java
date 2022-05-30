@@ -206,8 +206,8 @@ public class DataService {
 
         Student s2 = new Student("test_student2",  "test_student2@gmail.com",
                 addressService.get(2L), Role.ROLE_STUDENT);
-        s2.setName("Maria");
-        s2.setSurname("Diana");
+        s2.setName("Joana");
+        s2.setSurname("Biones");
         s2.setPhone("6555343331");
         s2.setBirthday(LocalDate.parse("2000-12-07"));
         s2.setSex("Female");
@@ -236,11 +236,11 @@ public class DataService {
 
         Student s4 = new Student("test_student4",  "test_student4@gmail.com",
                 addressService.get(4L), Role.ROLE_STUDENT);
-        s4.setName("Angelica");
-        s4.setSurname("Laza");
+        s4.setName("Juan");
+        s4.setSurname("Ignacio");
         s4.setPhone("6022345564");
         s4.setBirthday(LocalDate.parse("2000-03-02"));
-        s4.setSex("Female");
+        s4.setSex("Male");
         s4.setRole(Role.ROLE_STUDENT);
         s4.setDescription(desc);
         s4.setUniversity(universityService.findById(4L));
