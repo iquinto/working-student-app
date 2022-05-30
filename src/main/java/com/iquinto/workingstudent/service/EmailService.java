@@ -70,7 +70,7 @@ public class EmailService {
         boolean sent;
         String to = notification.getDestination().getEmail();
         String subject = "Plataforma WORKINGSTUDENT: Aviso de " + notification.getSubject() + " sobre la reserva de "
-                + notification.getOrigin().getName() + " " +  notification.getOrigin().getSurname();
+                + notification.getOrigin().getName() + " " +  (notification.getOrigin().getSurname() != null ? notification.getOrigin().getSurname() : "") ;
         String body = generateBodNotification(notification);
 
 
@@ -97,6 +97,7 @@ public class EmailService {
         return sent;
     }
     private String generateBodNotification(Notification notification) {
+
         String body = "<div id=\"app\">\n" +
                 "<div class=\"container\">\n" +
                 "<div class=\"container\">\n" +
@@ -104,34 +105,10 @@ public class EmailService {
                 "<div class=\"col-md-8\">\n" +
                 "<div class=\"card notification-card\">\n" +
                 "<div class=\"card-body\">\n" +
-                "<p>Aviso de&nbsp;<strong>"+notification.getSubject()+"</strong>&nbsp;por parte de&nbsp;<strong>"+notification.getOrigin().getName()+" "+ notification.getOrigin().getSurname() +"</strong>&nbsp;sobre los siguentes horarios:</p>\n" +
-                "<table class=\"table table-striped reservation-table\" style=\"width: 359.141px;\">\n" +
-                "<thead>\n" +
-                "<tr>\n" +
-                "<th style=\"width: 114.352px;\" scope=\"col\">Dia</th>\n" +
-                "<th style=\"width: 98.1641px;\" scope=\"col\">Inicio</th>\n" +
-                "<th style=\"width: 124.625px;\" scope=\"col\">F&iacute;n</th>\n" +
-                "</tr>\n" +
-                "</thead>\n" +
-                "<tbody>\n" + getTable(notification.getSlots()) +
+                "<p>Aviso de&nbsp;<strong>"+notification.getSubject()+"</strong>&nbsp;por parte de&nbsp;<strong>"+notification.getOrigin().getName()+" "  + (notification.getOrigin().getSurname() != null ? notification.getOrigin().getSurname() : "") +"</strong>&nbsp;sobre los siguentes horarios:</p><br>\n" +
+                 getTable(notification.getSlots()) +
 
-                /*
-                "<tr>\n" +
-                "<td style=\"width: 114.352px;\">MARTES</td>\n" +
-                "<td style=\"width: 98.1641px;\">18:00</td>\n" +
-                "<td style=\"width: 124.625px;\">18:59</td>\n" +
-                "</tr>\n" +
-                "<tr>\n" +
-                "<td style=\"width: 114.352px;\">LUNES</td>\n" +
-                "<td style=\"width: 98.1641px;\">9:00</td>\n" +
-                "<td style=\"width: 124.625px;\">9:59</td>\n" +
-                "</tr>\n" +
-
-
-                 */
-                "</tbody>\n" +
-                "</table>\n" +
-                "<p>Puede ponerse en contacto a los sigunetes datos:</p>\n" +
+                "<br><p>Puede ponerse en contacto a los sigunetes datos:</p>\n" +
                 "<p>&nbsp;"+ notification.getOrigin().getPhone()+"</p>\n" +
                 "<p>&nbsp;"+ notification.getOrigin().getEmail()+"</p>\n" +
                 "<div class=\"notification-links\">&nbsp;</div>\n" +
@@ -150,16 +127,25 @@ public class EmailService {
     }
 
     private String getTable(Set<Slot> slotSet) {
-        String table = "<tr>";
 
-        for(Slot slot : slotSet){
-            table = table +  "<td style=\"width: 114.352px;\">"+slot.getDay()+"</td>\n" +
-                    "<td style=\"width: 98.1641px;\">"+slot.getStartTime()+"</td>\n" +
-                    "<td style=\"width: 124.625px;\">"+slot.getEndTime()+"</td>\n";
+        String text=
+                "<table width='50%' align='left' style='border: 1px solid black; border-collapse: collapse;'>"
+                        + "<tr align='center'>"
+                        + "<td style='border: 1px solid black; border-collapse: collapse;'><b>Day<b></td>"
+                        + "<td style='border: 1px solid black; border-collapse: collapse;'><b>Inicio<b></td>"
+                        + "<td style='border: 1px solid black; border-collapse: collapse;'><b>Fin<b></td>"
+                        + "</tr>";
+
+        for (Slot slot : slotSet) {
+            text = text+"<tr align='center'>"+
+                    "<td style='border: 1px solid black; border-collapse: collapse;'>" + slot.getDay() + "</td>"
+                  + "<td style='border: 1px solid black; border-collapse: collapse;'>" + slot.getStartTime()+ "</td>"
+                  + "<td style='border: 1px solid black; border-collapse: collapse;'>" + slot.getEndTime() + "</td>"
+                 +  "</tr>";
         }
-        table = table + "</tr>";
-        return table;
 
+        text = text + "</table>";
+        return text;
     }
 
 
