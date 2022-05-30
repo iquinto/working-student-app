@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -127,6 +128,10 @@ public class EmailService {
     }
 
     private String getTable(Set<Slot> slotSet) {
+        List<Slot> sorted =  slotSet.stream()
+                .sorted(Comparator.comparing(Slot::getStartTime)) //comparator - how you want to sort it
+                .collect(Collectors.toList());
+
 
         String text=
                 "<table width='50%' align='left' style='border: 1px solid black; border-collapse: collapse;'>"
@@ -136,7 +141,7 @@ public class EmailService {
                         + "<td style='border: 1px solid black; border-collapse: collapse;'><b>Fin<b></td>"
                         + "</tr>";
 
-        for (Slot slot : slotSet) {
+        for (Slot slot : sorted) {
             text = text+"<tr align='center'>"+
                     "<td style='border: 1px solid black; border-collapse: collapse;'>" + slot.getDay() + "</td>"
                   + "<td style='border: 1px solid black; border-collapse: collapse;'>" + slot.getStartTime()+ "</td>"
