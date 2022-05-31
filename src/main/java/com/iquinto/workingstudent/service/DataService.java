@@ -341,20 +341,45 @@ public class DataService {
         });
 
         /******************************************************************
-         * LOAD NOTIFICATION
+         * LOAD RESERVATION AND NOTIFICATION
          ******************************************************************/
+        List<Schedule> schedules = scheduleService.findAllByStudent(s1);
+        Set<Schedule> sc1 =  new HashSet<>();
+        Schedule schedule1 = schedules.get(10);
+        schedule1.setReserve(true);
+        scheduleService.save(schedule1);
+        sc1.add(schedule1);
+        Reservation r1 = new Reservation(e1, LocalDate.now().plusDays(10), 7);
+        r1.setStudent(s1);
+        r1.setSchedules(sc1);
+        reservationService.save(r1);
 
+        Notification n1 = notificationService.save(new  Notification(e1, s1, Notification.SAVE, "some"));
+        Set <Slot> slots1 = new HashSet<>();
+        sc1.stream().forEach((schedule)-> {
+            slots1.add(schedule.getSlot());
+        });
+        n1.setSlots(slots1);
+        notificationService.save(n1);
+        
+        Set<Schedule> sc2 =  new HashSet<>();
+        Schedule schedule2 = schedules.get(15);
+        schedule2.setReserve(true);
+        scheduleService.save(schedule2);
+        sc2.add(schedule2);
+        Reservation r2 = new Reservation(e1, LocalDate.now().plusDays(10), 7);
+        r2.setStudent(s1);
+        r2.setSchedules(sc2);
+        r2.setAccepted(true);
+        reservationService.save(r2);
 
-        for (String n : Arrays.asList(Notification.SAVE, Notification.ACCEPTED,
-                Notification.DELETE,Notification.EDIT, Notification.REJECTED)){
-            Notification notification = notificationService.save(new  Notification(e1, s1, n, "some"));
-            Set <Slot> slots = new HashSet<>();
-            slots.add(slotService.findById(1L));
-            slots.add(slotService.findById(25L));
-            notification.setSlots(slots);
-            notificationService.save(notification);
-        }
-
+        Notification n2 = notificationService.save(new  Notification(s1, e1, Notification.ACCEPTED, "some"));
+        Set <Slot> slots2 = new HashSet<>();
+        sc2.stream().forEach((schedule)-> {
+            slots2.add(schedule.getSlot());
+        });
+        n2.setSlots(slots2);
+        notificationService.save(n2);
 
         /******************************************************************
          * LOAD RATING
