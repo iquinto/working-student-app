@@ -99,4 +99,13 @@ docker rmi -f $(docker images -a -q)
 
 ```
 
+ ## AWS + Docker 
+
+```
+docker build -t workingstudentapp .
+docker tag workingstudentapp iquinto/ws-back
+docker push iquinto/ws-back
+ssh -i "***file.pem" ubuntu@*** // use public ip
+sudo docker-compose up
+```
  
